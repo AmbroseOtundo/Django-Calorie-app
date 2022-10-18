@@ -44,28 +44,21 @@ def HomePageView(request):
 
 #signup page
 def RegisterPage(request):
-	if request.user.is_authenticated:
-		return redirect('home')
-	else:
-		form = CreateUserForm()
-		if request.method == 'POST':
-			form = CreateUserForm(request.POST)
-			if form.is_valid():
-				form.save()
-				user = form.cleaned_data.get('username')
-				messages.success(request,"Account was created for "+ user)
-				return redirect('login')
+	form = CreateUserForm()
+	if request.method == 'POST':
+		form = CreateUserForm(request.POST)
+		if form.is_valid():
+			form.save()
+			user = form.cleaned_data.get('username')
+			messages.success(request,"Account was created for "+ user)
+			return redirect('login')
 
-		context = {'form':form}
-		return render(request,'register.html',context)
+	context = {'form':form}
+	return render(request,'register.html',context)
 
 #login page
 def LoginPage(request):
-	if request.user.is_authenticated:
-		return redirect('home')
-	else:
-
-		if request.method == 'POST':
+	if request.method == 'POST':
 			username = request.POST.get('username')
 			password = request.POST.get('password')
 			user = authenticate(request,username=username,password=password)
@@ -74,8 +67,8 @@ def LoginPage(request):
 				return redirect('home')
 			else:
 				messages.info(request,'Username or password is incorrect')
-		context = {}
-		return render(request,'login.html',context)
+
+	return render(request,'login.html')
 
 #logout page
 def LogOutPage(request):
@@ -96,10 +89,8 @@ def select_food(request):
 			form.save()
 			return redirect('home')
 	else:
-		form = SelectFoodForm(request.user)
-
-	context = {'form':form,'food_items':food_items}
-	return render(request, 'select_food.html',context)
+		form = SelectFoodForm(request.POST)
+	return render(request, 'select_food.html',{'form':form,'food_items':food_items})
 
 #for adding new food
 def add_food(request):
