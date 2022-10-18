@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1 id="username" class="text-center mt-4 headline">Hi {{ request.user }}<sub><a href="{% url "logout" %}">(Logout)</a></sub></h1>
+<h1 id="username" class="text-center mt-4 headline">Hi {{ request.user }}</h1>
 
 
 <div class="container mt-2">
@@ -30,7 +30,7 @@
           {% if calorie_goal_status > 0 %}
       You need  {{ calorie_goal_status }} calories more to reach your goal 
       {% elif calorie_goal == 0 %}
-      <a href="{% url "profile" %}"> Enter your calorie goal for the day </a>
+      <a href="{% url 'profile' %}"> Enter your calorie goal for the day </a>
       {% else %}
       You surpassed your goal by {{ over_calorie }} calories 
       {% endif %} </p>
@@ -61,6 +61,7 @@
     {% endfor %}
   </tbody>
 </table>
+<a href="{% url 'logout' %}"><button class="btn btn-success">Logout</button> </a>
 </div>
 
 

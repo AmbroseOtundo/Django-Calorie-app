@@ -1,3 +1,4 @@
+from pyexpat import model
 from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
@@ -11,7 +12,8 @@ class CreateUserForm(UserCreationForm):
 
 class SelectFoodForm(forms.ModelForm):
     class Meta:
-        model = ('food_selected', 'quantity')
+        model = Profile
+        fields = ('food_selected', 'quantity')
 
             # This function is a constructor for the SelectFoodForm class. 
             # It takes in a user object and then sets the queryset for the food_selected field to be all
@@ -20,8 +22,9 @@ class SelectFoodForm(forms.ModelForm):
             # One thing to watch is at the end __init__ is overridden. The reason is the queryset of the foods for selecting must be the foods that the user added. So we filtered Food objects by Food.objects.filter(person_of=user).
             # 
         def __init__(self, user, *args, **kwargs):
+            user = kwargs.pop('user')
             super(SelectFoodForm, self).__init__(*args, **kwargs)
-            self.fields['food_selected'].queryset = Food.objects.filter(person_of=user)
+            self.fields['food_selected'].queryset = user
 
 class AddFoodForm(forms.ModelForm):
     class Meta:

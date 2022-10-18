@@ -91,9 +91,8 @@ def select_food(request):
 	form = SelectFoodForm(request.user,instance=person)
 
 	if request.method == 'POST':
-		form = SelectFoodForm(request.user,request.POST,instance=person)
+		form = SelectFoodForm(request.POST,request.user,instance=person)
 		if form.is_valid():
-			
 			form.save()
 			return redirect('home')
 	else:
