@@ -15,7 +15,7 @@ git clone https://github.com/AmbroseOtundo/Django-Calorie-app
 
 Go to the directory where the folder is located
 ```bash
-
+cd Django-Calorie-app
 ```
 ## Installation
 
