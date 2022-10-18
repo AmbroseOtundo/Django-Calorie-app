@@ -1,7 +1,6 @@
 # Django-Calorie-app
-<h1> A simple calorie tracker app</h1>
 
-### Live Bot Demo<a href="http://t.me/Pokemon_Pokedex_Database_Bot"> Pokedex </a>
+### Live Bot Demo<a href="http://t.me/Pokemon_Pokedex_Database_Bot"> Calorie tracker app </a>
 
 ## Running the project in your local environment
 
