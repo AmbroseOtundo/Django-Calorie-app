@@ -1,1 +1,1 @@
-web: gunicorn 'calorie_tracke.wsgi'
+web: gunicorn 'calorie_tracker.wsgi'
