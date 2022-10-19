@@ -1,8 +1,5 @@
 # Django-Calorie-app
 
-# Django-Calorie-app
-
-
 ## Running the project in your local environment
 
 ## Usage
